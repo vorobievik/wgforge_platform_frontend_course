@@ -6,7 +6,12 @@ Example:
 [1, 2, 3], x => x + 1  yields [2, 3 ,4]
 */
 export function map(array, func) {
-  // YOUR CODE HERE
+  let arr=[]
+  for (let i = 0; i < array.length; i++) {
+   arr= [...arr,func(array[i])] 
+    
+  }
+return arr
 }
 
 /*
@@ -19,8 +24,15 @@ returns new array with elements matched to filter
 
 */
 export function filter(array, fn) {
-  // YOUR CODE HERE
-}
+  let arr = [];
+  for (let i = 0; i < array.length; i++) {
+    if (fn(array[i])) {
+      arr = [...arr,array[i] ]
+    }   
+  }
+  return arr
+  }
+
 
 /*
 Implement a function that returns a function which yields a fibonaccy number
@@ -36,8 +48,36 @@ gen() -> 5
 ...
 */
 export function fibGenerator() {
-  // YOUR CODE HERE
-}
+  
+    let prevNum = 0;
+    let num = 0;
+    let iterator = 0;
+  
+    return () => {
+      if (iterator > 2) {
+        [prevNum, num] = [num, prevNum + num];
+  
+        return (prevNum + num);
+      }
+      else {
+        switch (iterator) {
+          case 0: {
+            num = 0;
+            break;
+          }
+          case 1:
+          case 2: {
+            num = 1;
+            break;
+          }
+        }
+        iterator++;
+  
+        return (prevNum + num);
+      }
+    }
+  }
+
 
 /*
 Write a function that recieves a function and other
@@ -53,5 +93,9 @@ sumTwoAndFour() // 6
 Note: function has a length property which shows how many arguments it receives
 */
 export function partial(fn, ...args) {
-  // YOUR CODE HERE
+  return function(...arr){
+   
+      return fn(...args,...arr)
+  }
+
 }
